@@ -1,0 +1,19 @@
+// This function takes a string and returns a boolean value indicating whether the string is a palindrome or not.
+FUNCTION IsPalindrome(word : STRING) : BOOLEAN
+VAR
+    isPalindrome : BOOLEAN;
+BEGIN
+    // Check for empty word or single character word
+    IF LENGTH(word) = 0 OR LENGTH(word) = 1 THEN
+        isPalindrome := TRUE;  // Word is a palindrome if it is empty or contains only one character.
+    ELSE
+        // Compare characters at ends of the word
+        IF LEFT(word, 1) = RIGHT(word, 1) AND IsPalindrome(SUBSTRING(word, 2, LENGTH(word) - 1)) THEN
+            isPalindrome := TRUE;  // Word is a palindrome if the first and last characters are the same and the substring between them is also a palindrome.
+        ELSE
+            isPalindrome := FALSE;  // Word is not a palindrome if the first and last characters are not the same.
+        END_IF;
+    END_IF;
+    
+    RETURN isPalindrome;  // Return the boolean value indicating whether the word is a palindrome or not.
+END_FUNCTION;
